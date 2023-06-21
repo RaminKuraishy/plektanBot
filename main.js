@@ -1,2 +1,2 @@
-import { telegraf } from './index.js'
-telegraf.launch()
+import { telegraf } from "./index.js";
+telegraf.launch();

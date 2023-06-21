@@ -18,8 +18,8 @@ provider:
 
 
 functions:
-  api: # Function name
-    handler: index.handler # Reference to file handler.js & exported function 'users'
-    events: # All events associated with this function
+  api: 
+    handler: index.handler
+    events:
       - httpApi: 'POST /webhook'
       - httpApi: 'GET /set-webhook'
