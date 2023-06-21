@@ -1,0 +1,25 @@
+service: plektanBot
+frameworkVersion: "3"
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  architecture: arm64
+  region: eu-north-1
+  environment:
+
+    BOT_TOKEN: ${file(./serverless-env-production.yml):BOT_TOKEN, ''}
+    PLEKTAN_KEY: ${file(./serverless-env-production.yml):PLEKTAN_KEY, ''}
+    PLEKTAN_ACCESS_KEY: ${file(./serverless-env-production.yml):PLEKTAN_ACCESS_KEY, ''}
+    CHAT_NYVKY: ${file(./serverless-env-production.yml):CHAT_NYVKY, ''}
+    CHAT_MINSKY: ${file(./serverless-env-production.yml):CHAT_MINSKY, ''}
+    CHAT_3: ${file(./serverless-env-production.yml):CHAT_3, ''}
+    USERNAME_WHITELIST: ${file(./serverless-env-production.yml):USERNAME_WHITELIST, ''}
+
+
+functions:
+  api: # Function name
+    handler: index.handler # Reference to file handler.js & exported function 'users'
+    events: # All events associated with this function
+      - httpApi: 'POST /webhook'
+      - httpApi: 'GET /set-webhook'
